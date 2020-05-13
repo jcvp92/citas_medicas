@@ -2,13 +2,13 @@ import express, {Request,Response} from "express"
 import mongoose from "mongoose";
 import { users_router } from "../routers/users";
 import { appointments_router } from "../routers/appointments";
-
+//defnicion de clase 
  export  class Server { 
     public app: express.Application;
     public static _instance:Server;
     public port=3001;
      
-    // contructor para llamar las funciones
+    // contructor para llamar  a todas las funciones
     constructor() {
        this.app=express();
        this.settings__cors();
@@ -19,14 +19,14 @@ import { appointments_router } from "../routers/appointments";
 
     }
      //configuring the function  json
-     //configurando el json
+     //configurando el json (permitir datos)
      
     settings__json() {
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended:true }))
     }
 
-    // config routers
+    // config routers , express usa esta ruta
     settings__routers() {
         this.app.get("/", (req: Request, res: Response) => {
             res.json({
@@ -41,7 +41,7 @@ import { appointments_router } from "../routers/appointments";
 
 
     } 
-    // agregar datos
+    // agregar datos (autorizacion al frontend)
     settings__cors(){
         this.app.use((req, res, next) => {
           res.header('Access-Control-Allow-Origin', '*');
@@ -53,7 +53,7 @@ import { appointments_router } from "../routers/appointments";
     };
 
 
-    //conection mongodb
+    //conection mongodb (resive su host como parametro, retorna una promesa)
     connect__mongodb() {
         mongoose.connect("mongodb://localhost:27017", {
             useCreateIndex: true, 
@@ -70,7 +70,7 @@ import { appointments_router } from "../routers/appointments";
         })    
     }
    
-    // corriendo el servidor
+    // corriendo el servidor (resive dos parametros el puerto y la funcion anonima)
     run__start() {
         this.app.listen(this.port, () => {
             console.log("server running successfully in port", this.port)

@@ -1,10 +1,11 @@
 import {Request,Response} from "express" 
 import { Appointment } from "../db/mongoose";
 
+//CRUD completo de citas
 
-
+ 
 export const createAppointment=(req:Request,res:Response)=>{
-
+// crear
    let {body} = req;
    let objAppointment= new Appointment({
          dayAppointment: body.dayAppointment,
@@ -14,6 +15,7 @@ export const createAppointment=(req:Request,res:Response)=>{
    
     
    }); 
+
    
    objAppointment.save((err,appointmentDB)=>{
       if (err) {
@@ -32,7 +34,7 @@ export const createAppointment=(req:Request,res:Response)=>{
   
 
 }
-
+//traer
 export const getAppointments = (req: Request, res: Response) => {
     Appointment.find()
                 .exec((err, appointmenst) => {

@@ -1,5 +1,6 @@
 import { Schema } from  "mongoose";
 
+// importamos de mongoose con su propiedad esquema
 export const userSchema:Schema = new Schema({
 
     name: {type:String, required:true,maxlength:10},
