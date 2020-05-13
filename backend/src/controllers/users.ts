@@ -7,7 +7,7 @@ export const createdUsers=(req:Request,res:Response)=>{
     let objUser = new User({
         name: body.name,
         lastName: body.lastName,
-        document: body.document,
+        document: body.documents,
         birthdate: body.birthdate,
         city: body.city,
         neighborhood: body.neighborhood,
