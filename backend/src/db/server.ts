@@ -11,9 +11,11 @@ import { appointments_router } from "../routers/appointments";
     // contructor para llamar las funciones
     constructor() {
        this.app=express();
+       this.settings__cors();
        this.settings__json();
        this.settings__routers();
        this.connect__mongodb();
+  
 
     }
      //configuring the function  json
@@ -37,7 +39,18 @@ import { appointments_router } from "../routers/appointments";
 
         
 
+
     } 
+    // agregar datos
+    settings__cors(){
+        this.app.use((req, res, next) => {
+          res.header('Access-Control-Allow-Origin', '*');
+          res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+          res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+          res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+          next();
+        });
+    };
 
 
     //conection mongodb
